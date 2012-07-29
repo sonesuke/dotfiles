@@ -89,6 +89,7 @@ let python_highlight_all=1
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd BufWritePre *.py :%s/\s\+$//ge
 autocmd BufNewFile,BufRead test_*.py compiler nose
 
 " ruby setting
