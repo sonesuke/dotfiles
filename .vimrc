@@ -32,9 +32,8 @@ Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
 
 Bundle "nvie/vim-flake8"
-Bundle 'reinh/vim-makegreen'
-Bundle 'lambdalisue/nose.vim'
 Bundle "sontek/rope-vim"
+Bundle 'alfredodeza/pytest.vim'
 
 filetype plugin indent on
 
@@ -90,7 +89,6 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd BufNewFile,BufRead test_*.py compiler nose
 
 " ruby setting
 autocmd FileType ruby setl autoindent
@@ -143,6 +141,6 @@ let g:quickrun_config['markdown'] = {
 set splitbelow
 set splitright
 
-nnoremap <F8> :<C-u>call MakeGreen()<CR>
+nnoremap <F8> :<C-u>Pytest file<CR>
 
 inoremap jj <Esc>
