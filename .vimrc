@@ -31,9 +31,9 @@ Bundle 'tsukkee/unite-tag'
 Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
 
-Bundle "nvie/vim-flake8"
 Bundle "sontek/rope-vim"
 Bundle 'alfredodeza/pytest.vim'
+Bundle 'lambdalisue/vim-python-virtualenv'
 
 filetype plugin indent on
 
