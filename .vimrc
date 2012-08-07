@@ -17,7 +17,8 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
 Bundle 'tComment'
 Bundle 'Align'
-Bundle 'Gist.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-coffee-script'
 Bundle 'open-browser.vim'
@@ -32,7 +33,6 @@ Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
 
 Bundle "sontek/rope-vim"
-Bundle 'alfredodeza/pytest.vim'
 Bundle 'lambdalisue/vim-python-virtualenv'
 
 filetype plugin indent on
@@ -141,6 +141,6 @@ let g:quickrun_config['markdown'] = {
 set splitbelow
 set splitright
 
-nnoremap <F8> :<C-u>Pytest file<CR>
-
+nnoremap ttp :<C-u>!py.test --pep8 .<CR>
+nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 inoremap jj <Esc>
