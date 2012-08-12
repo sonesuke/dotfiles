@@ -35,6 +35,11 @@ Bundle 'h1mesuke/unite-outline'
 Bundle "sontek/rope-vim"
 Bundle 'lambdalisue/vim-python-virtualenv'
 
+Bundle "haskell.vim"
+Bundle "ujihisa/neco-ghc"
+Bundle "ujihisa/ref-hoogle"
+Bundle "eagletmt/ghcmod-vim"
+
 filetype plugin indent on
 
 set number " 行番号
@@ -59,10 +64,6 @@ set cursorline
 set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
 set imdisable "IME自動切り替えをOFFにする
-
-" 全角スペースの表示
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-match ZenkakuSpace /　/
 
 " タブ移動リマップ
 nnoremap tn gt
@@ -89,6 +90,8 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
+autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
+autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 
 " ruby setting
 autocmd FileType ruby setl autoindent
@@ -101,6 +104,9 @@ autocmd FileType coffee setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 " markdown setting
 autocmd FileType markdown setl autoindent
 autocmd FileType markdown setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" haskell setting
+autocmd Filetype haskell nnoremap ttd :<C-u>!doctest %<CR>
 
 " unite
 nnoremap    [unite]   <Nop>
@@ -141,6 +147,5 @@ let g:quickrun_config['markdown'] = {
 set splitbelow
 set splitright
 
-nnoremap ttp :<C-u>!py.test --pep8 .<CR>
-nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 inoremap jj <Esc>
+
