@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
@@ -40,6 +39,8 @@ Bundle "ujihisa/neco-ghc"
 Bundle "ujihisa/ref-hoogle"
 Bundle "eagletmt/ghcmod-vim"
 
+Bundle "sonesuke/tumblr-vim"
+
 filetype plugin indent on
 
 set number " 行番号
@@ -76,6 +77,9 @@ nnoremap <c-k> <C-W>k<C-w>_
 nnoremap <c-h> <C-W>h<C-w>_
 nnoremap <c-l> <C-W>l<C-w>_
 
+" remap ESC
+inoremap jj <Esc>
+
 " clear highlight
 nnoremap <ESC><ESC> :nohlsearch<CR><ESC>
 
@@ -90,8 +94,8 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
-autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
+autocmd FileType python nnoremap ttd :<C-u>:w | !py.test --pep8 .<CR>
+autocmd FileType python nnoremap ttc :<C-u>:w | !py.test --cov-report term-missing --cov .<CR>
 
 " ruby setting
 autocmd FileType ruby setl autoindent
@@ -147,5 +151,6 @@ let g:quickrun_config['markdown'] = {
 set splitbelow
 set splitright
 
-inoremap jj <Esc>
-
+" tumblr
+let g:tumblr_email="iamsonesuke@gmail.com"
+let g:tumblr_group="sonetechlog.tumblr.com"
