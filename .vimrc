@@ -38,8 +38,10 @@ Bundle "haskell.vim"
 Bundle "ujihisa/neco-ghc"
 Bundle "ujihisa/ref-hoogle"
 Bundle "eagletmt/ghcmod-vim"
+Bundle "eagletmt/unite-haddock"
 
 Bundle "sonesuke/tumblr-vim"
+Bundle "spolu/dwm.vim"
 
 filetype plugin indent on
 
@@ -72,10 +74,6 @@ nnoremap tp gT
 nnoremap tc :tabnew<CR>
 nnoremap tk :tabclose<CR>
 
-nnoremap <c-j> <C-W>j<C-w>_
-nnoremap <c-k> <C-W>k<C-w>_
-nnoremap <c-h> <C-W>h<C-w>_
-nnoremap <c-l> <C-W>l<C-w>_
 
 " remap ESC
 inoremap jj <Esc>
