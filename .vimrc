@@ -151,4 +151,4 @@ set splitright
 
 " tumblr
 let g:tumblr_email="iamsonesuke@gmail.com"
-let g:tumblr_group="sonetechlog.tumblr.com"
+let g:tumblr_group="tech.timlip.com"
