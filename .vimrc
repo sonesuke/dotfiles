@@ -5,7 +5,6 @@ call vundle#rc()
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'Shougo/neocomplcache'
 Bundle 'surround.vim'
