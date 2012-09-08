@@ -50,11 +50,12 @@ set noswapfile "スワップファイルを作らない
 set nowrap " 折り返しをしない
 set hidden " 編集中でも他のファイルを開けるようにする
 set guioptions-=T
+set guioptions-=m
+set guioptions+=a
 set backspace=indent,eol,start "バックスペースでインデントや改行を削除できるようにする
 set whichwrap=b,s,h,l,<,>,[,] "カーソルを行頭、行末で止まらないようにする
 set clipboard+=unnamed " OSのクリップボードを使用する
 set mouse=a " ターミナルでマウスを使用できるようにする
-set guioptions+=a
 set ttymouse=xterm2
 set showmatch         " 括弧の対応をハイライト
 set display=uhex      " 印字不可能文字を16進数で表示
@@ -64,6 +65,7 @@ set cursorline
 set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
 set imdisable "IME自動切り替えをOFFにする
+set shortmess+=I
 
 " タブ移動リマップ
 nnoremap tn gt
@@ -88,7 +90,8 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 --cov-report term-missing --cov .<CR>
+autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
+autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 
 " ruby setting
 autocmd FileType ruby setl autoindent
