@@ -21,6 +21,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-coffee-script'
 Bundle 'open-browser.vim'
+Bundle 'Vimerl'
 
 Bundle 'kana/textobj-user'
 Bundle 'kana/vim-textobj-indent.git'
@@ -42,8 +43,6 @@ Bundle "eagletmt/unite-haddock"
 
 Bundle "sonesuke/tumblr-vim"
 Bundle "spolu/dwm.vim"
-
-Bundle "jacekd/vim-iawriter"
 
 filetype plugin indent on
 
