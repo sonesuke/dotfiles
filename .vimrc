@@ -2,10 +2,8 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
+" Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimproc'
-Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'Shougo/neocomplcache'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
@@ -21,8 +19,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-coffee-script'
 Bundle 'open-browser.vim'
-Bundle 'Vimerl'
-
+Bundle 'msanders/snipmate.vim'
 Bundle 'kana/textobj-user'
 Bundle 'kana/vim-textobj-indent.git'
 
@@ -31,16 +28,15 @@ Bundle 'Sixeight/unite-grep'
 Bundle 'tsukkee/unite-tag'
 Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
+Bundle "eagletmt/unite-haddock"
 
+Bundle 'jimenezrick/vimerl'
 Bundle "sontek/rope-vim"
 Bundle 'lambdalisue/vim-python-virtualenv'
-
 Bundle "haskell.vim"
 Bundle "ujihisa/neco-ghc"
 Bundle "ujihisa/ref-hoogle"
 Bundle "eagletmt/ghcmod-vim"
-Bundle "eagletmt/unite-haddock"
-
 Bundle "sonesuke/tumblr-vim"
 Bundle "spolu/dwm.vim"
 
@@ -75,7 +71,6 @@ nnoremap tp gT
 nnoremap tc :tabnew<CR>
 nnoremap tk :tabclose<CR>
 
-
 " remap ESC
 inoremap jj <Esc>
 
@@ -93,8 +88,7 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
-autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
+autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 --cov-report term-missing --cov .<CR>
 
 " ruby setting
 autocmd FileType ruby setl autoindent
@@ -113,10 +107,9 @@ autocmd FileType markdown nnoremap ttd :<C-u>MarkedOpen<CR>
 autocmd Filetype haskell nnoremap ttd :<C-u>!doctest %<CR>
 
 " unite
-nnoremap    [unite]   <Nop>
+nnoremap [unite]   <Nop>
 nmap     , [unite]
 nnoremap [unite]u  :<C-u>Unite<Space>
-nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
@@ -126,30 +119,15 @@ nnoremap <silent> [unite]h  :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]l  :<C-u>UniteWithCursorWord line<CR>
 nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
-nnoremap <silent> [unite]s  :<C-u>Unite snippet<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite source resume<CR>
 
 let g:unite_source_file_mru_limit = 200
+" let g:unite_source_history_yank_enable = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
-"" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-
-" quickrun
-let g:quickrun_no_default_key_mappings = 1
-nnoremap <silent> ¥r  :<C-u>QuickRun<CR>
-let g:quickrun_config={}
-let g:quickrun_config={'*': {'split': ''}}
-let g:quickrun_config['markdown'] = {
-	\ 'outputter':'browser'
-	\ }
-set splitbelow
-set splitright
 
 " tumblr
 let g:tumblr_email="iamsonesuke@gmail.com"

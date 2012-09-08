@@ -1,0 +1,30 @@
+# import object
+snippet fro
+	from ${1:module} import ${2:object}
+# New Property
+snippet prop
+	@property
+	def ${1:property}(self):
+	    ${2:pass}
+# New Class
+snippet class
+	class ${1:ClassName}:
+	    ${2:pass}
+# py.test
+snippet pyt
+	import pytest
+snippet raiset
+	with pytest.raises(${1:Exception}):
+	    ${2:pass}
+snippet paramt
+	@pytest.mark.parametrize(
+	    (${1:args}),
+	    [
+	        ${2:parameters},
+	    ]
+	)
+snippet deft
+	def test_${1:method}():
+	    ${2:pass}
+snippet asserteq
+	assert ${1:lhs} == ${2:rhs}
