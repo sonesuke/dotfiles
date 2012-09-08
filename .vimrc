@@ -93,8 +93,8 @@ autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd FileType python nnoremap ttd :<C-u>:w | !py.test --pep8 .<CR>
-autocmd FileType python nnoremap ttc :<C-u>:w | !py.test --cov-report term-missing --cov .<CR>
+autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
+autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 
 " ruby setting
 autocmd FileType ruby setl autoindent
@@ -107,6 +107,7 @@ autocmd FileType coffee setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 " markdown setting
 autocmd FileType markdown setl autoindent
 autocmd FileType markdown setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType markdown nnoremap ttd :<C-u>MarkedOpen<CR>
 
 " haskell setting
 autocmd Filetype haskell nnoremap ttd :<C-u>!doctest %<CR>
