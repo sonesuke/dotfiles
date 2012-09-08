@@ -1,4 +1,4 @@
-brew install fontforge
+sudo brew install fontforge --use-gcc --without-python
 mkdir $HOME/tmp
 cd $HOME/tmp
 curl -L -o $HOME/tmp/Inconsolata.otf http://levien.com/type/myfonts/Inconsolata.otf
@@ -8,5 +8,6 @@ unzip $HOME/tmp/3.2.0.zip
 unzip $HOME/tmp/migu-1m-20120411-2.zip
 cp $HOME/tmp/Inconsolata.otf $HOME/tmp/yascentur-Ricty-b9d8b9c/
 cp $HOME/tmp/migu-1m-20120411-2/*.ttf $HOME/tmp/yascentur-Ricty-b9d8b9c/
-$HOME/tmp/yascentur-Ricty-b9d8b9c/ricty_generator.sh Inconsolata.otf migu-1m-regular.ttf migu-1m-bold.ttf
+cd $HOME/tmp/yascentur-Ricty-b9d8b9c/
+./ricty_generator.sh Inconsolata.otf migu-1m-regular.ttf migu-1m-bold.ttf
 cp $HOME/tmp/yascentur-Ricty-b9d8b9c/Ricty*.ttf /Library/Fonts/
