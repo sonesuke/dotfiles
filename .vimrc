@@ -131,6 +131,8 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
+inoremap <expr><C-j> pumvisible()?"\<C-n>":"\<C-j>"
+inoremap <expr><C-n> pumvisible()?"\<C-p>":"\<C-k>"
 
 " tumblr
 let g:tumblr_email="iamsonesuke@gmail.com"
