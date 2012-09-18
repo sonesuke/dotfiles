@@ -125,14 +125,15 @@ nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite source resume<CR>
 
 let g:unite_source_file_mru_limit = 200
-" let g:unite_source_history_yank_enable = 1
+let g:unite_source_history_yank_enable = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
 inoremap <expr><C-j> pumvisible()?"\<C-n>":"\<C-j>"
-inoremap <expr><C-n> pumvisible()?"\<C-p>":"\<C-k>"
+inoremap <expr><C-k> pumvisible()?"\<C-p>":"\<C-k>"
+:set completeopt=menu
 
 " tumblr
 let g:tumblr_email="iamsonesuke@gmail.com"
@@ -142,3 +143,5 @@ let g:tumblr_group="tech.timlip.com"
 :set encoding=utf-8
 :set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
+" snipmate
+:let g:snippets_dir = "$HOME/.vim/bundle/snipmate.vim/snippets, $HOME//.vim//snippets"
