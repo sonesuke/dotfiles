@@ -7,11 +7,14 @@ Bundle 'Shougo/vimproc'
 Bundle 'Shougo/neocomplcache'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
+if has('mac')
 Bundle 'itspriddle/vim-marked'
+endif
 Bundle 'mattn/zencoding-vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
+Bundle 'thinca/vim-quickrun'
 Bundle 'tComment'
 Bundle 'Align'
 Bundle 'mattn/gist-vim'
@@ -25,18 +28,17 @@ Bundle 'kana/vim-textobj-indent.git'
 
 Bundle 'Shougo/unite.vim'
 Bundle 'Sixeight/unite-grep'
-Bundle 'tsukkee/unite-tag'
 Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
 Bundle "eagletmt/unite-haddock"
 
-Bundle 'jimenezrick/vimerl'
 Bundle "sontek/rope-vim"
 Bundle 'lambdalisue/vim-python-virtualenv'
 Bundle "haskell.vim"
 Bundle "ujihisa/neco-ghc"
 Bundle "ujihisa/ref-hoogle"
 Bundle "eagletmt/ghcmod-vim"
+
 Bundle "sonesuke/tumblr-vim"
 Bundle "spolu/dwm.vim"
 
@@ -117,12 +119,11 @@ nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]g  :<C-u>Unite grep:%:-iHRn<CR>
-nnoremap <silent> [unite]t  :<C-u>Unite tag<CR>
 nnoremap <silent> [unite]h  :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
-nnoremap <silent> [unite]l  :<C-u>UniteWithCursorWord line<CR>
+nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord line<CR>
+nnoremap <silent> [unite]l  :<C-u>Unite line<CR>
 nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite source resume<CR>
 
 let g:unite_source_file_mru_limit = 200
 let g:unite_source_history_yank_enable = 1
@@ -133,15 +134,36 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
 inoremap <expr><C-j> pumvisible()?"\<C-n>":"\<C-j>"
 inoremap <expr><C-k> pumvisible()?"\<C-p>":"\<C-k>"
-:set completeopt=menu
+set completeopt=menu
 
 " tumblr
 let g:tumblr_email="iamsonesuke@gmail.com"
 let g:tumblr_group="tech.timlip.com"
 
 " japanese character code
-:set encoding=utf-8
-:set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set encoding=utf-8
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
 " snipmate
-:let g:snippets_dir = "$HOME/.vim/bundle/snipmate.vim/snippets, $HOME//.vim//snippets"
+let g:snippets_dir = "$HOME/.vim/bundle/snipmate.vim/snippets, $HOME//.vim//snippets"
+
+" quickrun
+let g:quickrun_no_default_key_mappings = 1
+let g:quickrun_config = {}
+if has('mac')
+  let g:quickrun_config.cs = {
+        \ 'command' : 'cs',
+        \ 'runmode' : 'simple',
+        \ 'exec' : ['%c %s > /dev/null', 'mono "%S:p:r:gs?/?\\?.exe" %a', ':call delete("%S:p:r.exe")'],
+        \ 'tempfile' : '{tempname()}.cs',
+        \ }
+else
+  let g:quickrun_config.cs = {
+        \ 'command' : 'csc',
+        \ 'runmode' : 'simple',
+        \ 'exec' : ['%c /nologo %s:gs?/?\\? > /dev/null', '"%S:p:r:gs?/?\\?.exe" %a', ':call delete("%S:p:r.exe")'],
+        \ 'tempfile' : '{tempname()}.cs',
+        \ }
+endif
+
+silent! map <unique> rr <Plug>(quickrun)
