@@ -4,3 +4,4 @@ sudo pip install pytest-pep8
 sudo pip install rope
 sudo pip install ropemode
 sudo pip install mock
+sudo pip install PEAK-Rules
