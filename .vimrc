@@ -2,7 +2,6 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-" Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/neocomplcache'
 Bundle 'surround.vim'
@@ -12,19 +11,15 @@ Bundle 'itspriddle/vim-marked'
 endif
 Bundle 'mattn/zencoding-vim'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
-Bundle 'thinca/vim-quickrun'
 Bundle 'tComment'
 Bundle 'Align'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-coffee-script'
 Bundle 'open-browser.vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'kana/textobj-user'
-Bundle 'kana/vim-textobj-indent.git'
 
 Bundle 'Shougo/unite.vim'
 Bundle 'Sixeight/unite-grep'
@@ -40,6 +35,7 @@ Bundle "ujihisa/ref-hoogle"
 Bundle "eagletmt/ghcmod-vim"
 
 Bundle "sonesuke/tumblr-vim"
+Bundle "sonesuke/pythonista-vim"
 Bundle "spolu/dwm.vim"
 
 filetype plugin indent on
@@ -66,14 +62,7 @@ set ruler "カーソルが何行目の何列目に置かれているかを表示
 set cursorline
 set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
-set imdisable "IME自動切り替えをOFFにする
 set shortmess+=I
-
-" タブ移動リマップ
-nnoremap tn gt
-nnoremap tp gT
-nnoremap tc :tabnew<CR>
-nnoremap tk :tabclose<CR>
 
 " remap ESC
 inoremap jj <Esc>
@@ -91,17 +80,19 @@ let python_highlight_all=1
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd BufWritePre *.py :%s/\s\+$//ge
-autocmd FileType python nnoremap ttd :<C-u>!py.test --pep8 .<CR>
+autocmd BufWritePre *.py :RemoveUnwantedSpaces
+autocmd FileType python nnoremap ttd :<C-u>call PythonTTD()<CR>
 autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
+
+function! PythonTTD()
+	write
+	sleep 100ms
+	!py.test --pep8 .
+endfunction!
 
 " ruby setting
 autocmd FileType ruby setl autoindent
 autocmd FileType ruby setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-" coffee-script setting
-autocmd FileType coffee setl autoindent
-autocmd FileType coffee setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " markdown setting
 autocmd FileType markdown setl autoindent
@@ -146,24 +137,3 @@ set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp
 
 " snipmate
 let g:snippets_dir = "$HOME/.vim/bundle/snipmate.vim/snippets, $HOME//.vim//snippets"
-
-" quickrun
-let g:quickrun_no_default_key_mappings = 1
-let g:quickrun_config = {}
-if has('mac')
-  let g:quickrun_config.cs = {
-        \ 'command' : 'cs',
-        \ 'runmode' : 'simple',
-        \ 'exec' : ['%c %s > /dev/null', 'mono "%S:p:r:gs?/?\\?.exe" %a', ':call delete("%S:p:r.exe")'],
-        \ 'tempfile' : '{tempname()}.cs',
-        \ }
-else
-  let g:quickrun_config.cs = {
-        \ 'command' : 'csc',
-        \ 'runmode' : 'simple',
-        \ 'exec' : ['%c /nologo %s:gs?/?\\? > /dev/null', '"%S:p:r:gs?/?\\?.exe" %a', ':call delete("%S:p:r.exe")'],
-        \ 'tempfile' : '{tempname()}.cs',
-        \ }
-endif
-
-silent! map <unique> rr <Plug>(quickrun)
