@@ -23,18 +23,12 @@ snippet parat
 	        ${2:parameters},
 	    ]
 	)
-snippet deft
-	def test_${1:method}():
-	    ${2:pass}
 snippet aeq
 	assert ${1:lhs} == ${2:rhs}
 snippet @wh
 	@when(${1:method}, (${2:args}, ))
 	def $1(self, ${3}):
 		${4:pass}
-snippet defi
-	def __init__(self${1:}):
-		${2:pass}
 # Lambda
 snippet ld
 	lambda ${1:vars}: ${2:action}
@@ -52,17 +46,15 @@ snippet cl
 			self.$4 = $4
 			${6}
 # New Function
+snippet defi
+	def __init__(self${1:}):
+		${2:pass}
 snippet def
-	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		"""${3:docstring for $1}"""
-		${4:pass}
-snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}${3}):
 		${4}
-# New Method
-snippet defs
-	def ${1:mname}(self, ${2:arg}):
-		${3:pass}
+snippet deft
+	def test_${1:method}():
+	    ${2:pass}
 # New Property
 snippet property
 	def ${1:foo}():
@@ -76,3 +68,7 @@ snippet @class
 	@classmethod
 	def ${1:name}(cls${2}):
 		${3:pass}
+# for
+snippet for
+	for ${1} in ${2}:
+		${3}
