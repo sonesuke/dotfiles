@@ -174,3 +174,27 @@ sudopybrew()
 
 # main
 __pythonbrew_set_current_path
+
+# cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+ 
+# zaw-src-cdr
+source $HOME/.zsh/zaw/zaw.zsh
+zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitiveに
+bindkey '^gs' zaw-cdr # zaw-cdrをbindkey
+
+# autojump
+BREW_PREFIX=`brew --prefix`
+if [ -e $BREW_PREFIX/etc/autojump ]; then
+	source $BREW_PREFIX/etc/autojump
+fi
+
+if [ -x /usr/local/bin/brew ]; then
+	BREW_PREFIX=`brew --prefix`
+	fpath=($BREW_PREFIX/share/zsh/functions(N) $BREW_PREFIX/share/zsh/site-functions(N) $fpath)
+fi
+autoload -U compinit; compinit -u

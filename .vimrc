@@ -7,7 +7,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
 if has('mac')
-Bundle 'itspriddle/vim-marked'
+	Bundle 'itspriddle/vim-marked'
 endif
 Bundle 'mattn/zencoding-vim'
 Bundle 'vim-ruby/vim-ruby'
@@ -27,7 +27,6 @@ Bundle 'tsukkee/unite-help'
 Bundle 'h1mesuke/unite-outline'
 Bundle "eagletmt/unite-haddock"
 
-Bundle "sontek/rope-vim"
 Bundle 'lambdalisue/vim-python-virtualenv'
 Bundle "haskell.vim"
 Bundle "ujihisa/neco-ghc"
@@ -37,6 +36,7 @@ Bundle "eagletmt/ghcmod-vim"
 Bundle "sonesuke/tumblr-vim"
 Bundle "sonesuke/pythonista-vim"
 Bundle "spolu/dwm.vim"
+Bundle 'Lokaltog/vim-easymotion'
 
 filetype plugin indent on
 
@@ -86,7 +86,7 @@ autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --
 
 function! PythonTTD()
 	write
-	sleep 100ms
+	sleep 300ms
 	!py.test --pep8 .
 endfunction!
 
@@ -136,4 +136,8 @@ set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
 " snipmate
-let g:snippets_dir = "$HOME/.vim/bundle/snipmate.vim/snippets, $HOME//.vim//snippets"
+let g:snippets_dir = "$HOME//.vim//snippets"
+
+" easymotion
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+let g:EasyMotion_leader_key="`"
