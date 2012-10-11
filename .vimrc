@@ -4,6 +4,7 @@ call vundle#rc()
 
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
 if has('mac')
@@ -19,7 +20,6 @@ Bundle 'Align'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'open-browser.vim'
-Bundle 'msanders/snipmate.vim'
 
 Bundle 'Shougo/unite.vim'
 Bundle 'Sixeight/unite-grep'
@@ -37,6 +37,7 @@ Bundle "sonesuke/tumblr-vim"
 Bundle "sonesuke/pythonista-vim"
 Bundle "spolu/dwm.vim"
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'myusuf3/numbers.vim'
 
 filetype plugin indent on
 
@@ -63,6 +64,11 @@ set cursorline
 set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
 set shortmess+=I
+let mapleader=","
+
+" japanese character code
+set encoding=utf-8
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
 " remap ESC
 inoremap jj <Esc>
@@ -102,7 +108,7 @@ autocmd FileType markdown nnoremap ttd :<C-u>MarkedOpen<CR>
 " haskell setting
 autocmd Filetype haskell nnoremap ttd :<C-u>!doctest %<CR>
 
-" unite
+" unite {
 nnoremap [unite]   <Nop>
 nmap     , [unite]
 nnoremap [unite]u  :<C-u>Unite<Space>
@@ -120,24 +126,95 @@ let g:unite_source_file_mru_limit = 200
 let g:unite_source_history_yank_enable = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+"}
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
-inoremap <expr><C-j> pumvisible()?"\<C-n>":"\<C-j>"
-inoremap <expr><C-k> pumvisible()?"\<C-p>":"\<C-k>"
-set completeopt=menu
+" neocomplcache {
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_auto_delimiter = 1
+let g:neocomplcache_max_list = 15
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_snippets_dir = "$HOME//.vim//snippets"
 
-" tumblr
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 0
+
+" SuperTab like snippets behavior.
+imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
+smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+
+" Plugin key-mappings.
+" Ctrl-k expands snippet & moves to next position
+" <CR> chooses highlighted value
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>   neocomplcache#undo_completion()
+inoremap <expr><C-l>   neocomplcache#complete_common_string()
+inoremap <expr><CR>    neocomplcache#complete_common_string()
+
+
+" <CR>: close popup
+" <s-CR>: close popup and save indent.
+inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><s-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+	let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+	let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" For snippet_complete marker.
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
+
+" }
+
+" Fugitive {
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+"}
+
+" easymotion {
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+"}
+
+" tumblr {
 let g:tumblr_email="iamsonesuke@gmail.com"
 let g:tumblr_group="tech.timlip.com"
+"}
 
-" japanese character code
-set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-
-" snipmate
-let g:snippets_dir = "$HOME//.vim//snippets"
-
-" easymotion
-let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-let g:EasyMotion_leader_key="`"
