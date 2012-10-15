@@ -15,7 +15,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
-Bundle 'tComment'
+" Bundle 'tComment'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'Align'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
@@ -37,7 +38,6 @@ Bundle "sonesuke/tumblr-vim"
 Bundle "sonesuke/pythonista-vim"
 Bundle "spolu/dwm.vim"
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'myusuf3/numbers.vim'
 
 filetype plugin indent on
 
@@ -66,12 +66,12 @@ set ttyfast " 高速ターミナル接続を行う
 set shortmess+=I
 let mapleader=","
 
+" avoid miss type of C-@
+imap <C-@> <C-[>
+
 " japanese character code
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-
-" remap ESC
-inoremap jj <Esc>
 
 " clear highlight
 nnoremap <ESC><ESC> :nohlsearch<CR><ESC>
@@ -128,6 +128,31 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 "}
 
+" OmniComplete {
+if has("autocmd") && exists("+omnifunc")
+	autocmd Filetype *
+				\if &omnifunc == "" |
+				\setlocal omnifunc=syntaxcomplete#Complete |
+				\endif
+endif
+
+hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+
+" some convenient mappings
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menu,longest
+" }
+
 " neocomplcache {
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
@@ -139,6 +164,7 @@ let g:neocomplcache_max_list = 15
 let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_force_overwrite_completefunc = 1
 let g:neocomplcache_snippets_dir = "$HOME//.vim//snippets"
+let g:neocomplcache_snippets_disable_runtime_snippets = 1
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 0
@@ -218,3 +244,9 @@ let g:tumblr_email="iamsonesuke@gmail.com"
 let g:tumblr_group="tech.timlip.com"
 "}
 
+" NerdCommenter {
+let g:NERDCreateDefaultMappings = 0
+let NERDSpaceDelims = 1
+nmap <Leader>/ <Plug>NERDCommenterToggle
+vmap <Leader>/ <Plug>NERDCommenterToggle
+"}

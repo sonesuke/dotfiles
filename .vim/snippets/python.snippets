@@ -33,7 +33,7 @@ snippet @wh
 snippet ld
 	lambda ${1:vars}: ${2:action}
 snippet .
-	self.
+	self.${1}
 snippet imp
 	import ${1:module}
 
@@ -46,13 +46,19 @@ snippet cl
 			self.$4 = $4
 			${6}
 # New Function
+snippet moke
+        def ${1:aaaa}(${2}):
+                ${3}
+snippet def
+abbr def name
+	def ${1:fname}(`indent('.') ? 'self' : ''`${2}):
+		${3}
 snippet defi
+abbr def __init__
 	def __init__(self${1:}):
 		${2:pass}
-snippet def
-	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}${3}):
-		${4}
 snippet deft
+abbr def test_name
 	def test_${1:method}():
 	    ${2:pass}
 # New Property
