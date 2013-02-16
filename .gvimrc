@@ -1,8 +1,5 @@
-set lines=40
-set columns=120
-set transparency=10 " 透明度を指定
-
-" color scheme
-colorscheme iawriter
-set background=light
+set lines=60
+set columns=180
+set transparency=15 
+colorscheme github
 set guifont=Ricty:h14

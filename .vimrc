@@ -4,7 +4,11 @@ call vundle#rc()
 
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
+if has('mac')
+	Bundle 'Shougo/neocomplcache-rsense'
+endif
+Bundle 'Shougo/neosnippet'
+Bundle 'skwp/vim-rspec'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
 if has('mac')
@@ -15,8 +19,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
-" Bundle 'tComment'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'tComment'
 Bundle 'Align'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
@@ -37,7 +40,9 @@ Bundle "eagletmt/ghcmod-vim"
 Bundle "sonesuke/tumblr-vim"
 Bundle "sonesuke/pythonista-vim"
 Bundle "spolu/dwm.vim"
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'endel/vim-github-colorscheme'
+
+Bundle 'tpope/vim-endwise'
 
 filetype plugin indent on
 
@@ -63,8 +68,8 @@ set ruler "カーソルが何行目の何列目に置かれているかを表示
 set cursorline
 set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
+set infercase
 set shortmess+=I
-let mapleader=","
 
 " avoid miss type of C-@
 imap <C-@> <C-[>
@@ -99,6 +104,7 @@ endfunction!
 " ruby setting
 autocmd FileType ruby setl autoindent
 autocmd FileType ruby setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType ruby nnoremap ttd :<C-u>!rspec .<CR>
 
 " markdown setting
 autocmd FileType markdown setl autoindent
@@ -139,7 +145,6 @@ endif
 hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
 " some convenient mappings
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
@@ -148,12 +153,8 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menu,longest
-" }
-
 " neocomplcache {
+
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_smart_case = 1
@@ -165,6 +166,8 @@ let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_force_overwrite_completefunc = 1
 let g:neocomplcache_snippets_dir = "$HOME//.vim//snippets"
 let g:neocomplcache_snippets_disable_runtime_snippets = 1
+let g:neocomplcache#sources#rsense#home_directory = expand('/usr/local/Cellar/rsense/0.3/')
+let g:neocomplcache_skip_auto_completion_time = '0.3'
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 0
@@ -185,8 +188,17 @@ inoremap <expr><CR>    neocomplcache#complete_common_string()
 
 " <CR>: close popup
 " <s-CR>: close popup and save indent.
-inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+" inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+" inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"
+" endwise.vim とneocomplcache でマップが競合している問題を解消するハック
+" <CR> をアンマップしてから再定義している
+" http://d.hatena.ne.jp/rhysd/20111010/1318264556
+"
+iunmap <CR>
+imap <buffer> <expr><CR>
+      \ pumvisible() ? neocomplcache#smart_close_popup()."\<CR>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd"
+
 
 " <TAB>: completion.
 inoremap <expr><C-j>  pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -235,18 +247,8 @@ nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 "}
 
-" easymotion {
-let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-"}
-
 " tumblr {
 let g:tumblr_email="iamsonesuke@gmail.com"
 let g:tumblr_group="tech.timlip.com"
 "}
 
-" NerdCommenter {
-let g:NERDCreateDefaultMappings = 0
-let NERDSpaceDelims = 1
-nmap <Leader>/ <Plug>NERDCommenterToggle
-vmap <Leader>/ <Plug>NERDCommenterToggle
-"}
