@@ -8,34 +8,22 @@ if has('mac')
 	Bundle 'Shougo/neocomplcache-rsense'
 endif
 Bundle 'Shougo/neosnippet'
-Bundle 'skwp/vim-rspec'
 Bundle 'surround.vim'
 Bundle 'tpope/vim-markdown'
 if has('mac')
 	Bundle 'itspriddle/vim-marked'
 endif
-Bundle 'mattn/zencoding-vim'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
 Bundle 'tComment'
 Bundle 'Align'
 Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'open-browser.vim'
 
 Bundle 'Shougo/unite.vim'
-Bundle 'Sixeight/unite-grep'
-Bundle 'tsukkee/unite-help'
-Bundle 'h1mesuke/unite-outline'
-Bundle "eagletmt/unite-haddock"
+Bundle 'Shougo/unite-outline'
 
 Bundle 'lambdalisue/vim-python-virtualenv'
-Bundle "haskell.vim"
-Bundle "ujihisa/neco-ghc"
-Bundle "ujihisa/ref-hoogle"
-Bundle "eagletmt/ghcmod-vim"
 
 Bundle "sonesuke/tumblr-vim"
 Bundle "sonesuke/pythonista-vim"
@@ -43,6 +31,8 @@ Bundle "spolu/dwm.vim"
 Bundle 'endel/vim-github-colorscheme'
 
 Bundle 'tpope/vim-endwise'
+Bundle 'airblade/vim-gitgutter.git'
+Bundle 'glidenote/newdayone.vim'
 
 filetype plugin indent on
 
@@ -91,7 +81,8 @@ let python_highlight_all=1
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd BufWritePre *.py :RemoveUnwantedSpaces
+"autocmd BufWritePre *.py :RemoveUnwantedSpaces
+autocmd BufWritePre *.py %:!autopep8 %
 autocmd FileType python nnoremap ttd :<C-u>call PythonTTD()<CR>
 autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 
@@ -121,7 +112,7 @@ nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]g  :<C-u>Unite grep:%:-iHRn<CR>
+nnoremap <silent> [unite]g  :<C-u>Unite grep:%:-iRn<CR>
 nnoremap <silent> [unite]h  :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord line<CR>
@@ -132,6 +123,17 @@ let g:unite_source_file_mru_limit = 200
 let g:unite_source_history_yank_enable = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+
+" unite-grepのキーマップ
+" 選択した文字列をunite-grep
+" https://github.com/shingokatsushima/dotfiles/blob/master/.vimrc
+vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+
 "}
 
 " OmniComplete {
@@ -238,14 +240,6 @@ endif
 
 " }
 
-" Fugitive {
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
-"}
 
 " tumblr {
 let g:tumblr_email="iamsonesuke@gmail.com"
