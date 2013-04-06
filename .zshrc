@@ -39,7 +39,8 @@ zstyle ':completion:*' recent-dirs-insert both
 
 # zaw move recent dirs
 source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git/zaw.zsh
-bindkey '^h' zaw-cdr # CTRL-h
+bindkey '^j' zaw-cdr
+bindkey '^h' zaw-history
 
 # zsh-completions
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
