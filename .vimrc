@@ -18,6 +18,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'thinca/vim-visualstar'
 Bundle 'tComment'
 Bundle 'Align'
+Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
 Bundle 'Shougo/unite.vim'
@@ -246,3 +247,7 @@ let g:tumblr_email="iamsonesuke@gmail.com"
 let g:tumblr_group="tech.timlip.com"
 "}
 
+" gist {
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
+"}

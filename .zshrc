@@ -20,6 +20,9 @@ antigen-theme cypher
 # Tell antigen that you're done.
 antigen-apply
 
+# keymap like vim
+bindkey -v
+
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
 
@@ -42,3 +45,35 @@ bindkey '^h' zaw-cdr # CTRL-h
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 
 
+# google by w3m
+function go() {
+local str opt
+if [ $ != 0 ]; then
+	for i in $*; do
+		str="$str+$i"
+	done
+	str=`echo $str | sed 's/^\+//'`
+	opt='search?num=50&hl=ja&lr=lang_ja'
+	opt="${opt}&q=${str}"
+fi
+w3m http://www.google.co.jp/$opt
+}
+
+# alc by w3m
+function alc() {
+if [ $ != 0 ]; then
+      w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
+else
+      w3m "http://www.alc.co.jp/"
+fi
+}
+
+# move directory without cd
+setopt auto_cd
+
+# search command history
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
