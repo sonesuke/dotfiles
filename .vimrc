@@ -1,39 +1,42 @@
 filetype off
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
+ if has('vim_starting')
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
 
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/neocomplcache'
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'surround.vim'
+NeoBundle 'tpope/vim-markdown'
 if has('mac')
-	Bundle 'Shougo/neocomplcache-rsense'
+	NeoBundle 'itspriddle/vim-marked'
 endif
-Bundle 'Shougo/neosnippet'
-Bundle 'surround.vim'
-Bundle 'tpope/vim-markdown'
-if has('mac')
-	Bundle 'itspriddle/vim-marked'
-endif
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'thinca/vim-visualstar'
-Bundle 'tComment'
-Bundle 'Align'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'tComment'
+NeoBundle 'Align'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
 
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 
-Bundle 'lambdalisue/vim-python-virtualenv'
+NeoBundle 'lambdalisue/vim-python-virtualenv'
 
-Bundle "sonesuke/tumblr-vim"
-Bundle "sonesuke/pythonista-vim"
-Bundle "spolu/dwm.vim"
-Bundle 'endel/vim-github-colorscheme'
+NeoBundle "sonesuke/tumblr-vim"
+NeoBundle "sonesuke/pythonista-vim"
+NeoBundle "spolu/dwm.vim"
+NeoBundle 'endel/vim-github-colorscheme'
 
-Bundle 'tpope/vim-endwise'
-Bundle 'airblade/vim-gitgutter.git'
-Bundle 'glidenote/newdayone.vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'airblade/vim-gitgutter.git'
+NeoBundle 'glidenote/newdayone.vim'
 
 filetype plugin indent on
 
