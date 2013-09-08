@@ -1,21 +1,8 @@
 source $HOME/.zsh/antigen/antigen.zsh
 
-# Load the oh-my-zsh's library.
-antigen-use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen-bundle git
-antigen-bundle osx
-antigen-bundle brew
-antigen-bundle pip
-antigen-bundle command-not-found
-
-antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle sindresorhus/pure.git
 antigen-bundle zsh-users/zaw.git
 antigen-bundle zsh-users/zsh-completions.git
-
-# Load the theme.
-antigen-theme cypher
 
 # Tell antigen that you're done.
 antigen-apply
@@ -23,10 +10,15 @@ antigen-apply
 # keymap like vim
 bindkey -v
 
+# pure
+PURE_DEFAULT_USERNAME='sonesuke'
+source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sindresorhus-SLASH-pure.git/pure.zsh
+
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
 
 # pythonz
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -s $HOME/.pythonz/etc/bashrc ] && source $HOME/.pythonz/etc/bashrc
 . py33/bin/activate
 
@@ -45,20 +37,6 @@ bindkey '^h' zaw-history
 # zsh-completions
 fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
 
-
-# google by w3m
-function go() {
-local str opt
-if [ $ != 0 ]; then
-	for i in $*; do
-		str="$str+$i"
-	done
-	str=`echo $str | sed 's/^\+//'`
-	opt='search?num=50&hl=ja&lr=lang_ja'
-	opt="${opt}&q=${str}"
-fi
-w3m http://www.google.co.jp/$opt
-}
 
 # alc by w3m
 function alc() {

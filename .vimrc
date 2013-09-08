@@ -17,7 +17,7 @@ if has('mac')
 	NeoBundle 'itspriddle/vim-marked'
 endif
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'tComment'
 NeoBundle 'Align'
@@ -29,8 +29,7 @@ NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 
-NeoBundle "sonesuke/tumblr-vim"
-NeoBundle "sonesuke/pythonista-vim"
+"NeoBundle "sonesuke/tumblr-vim"
 NeoBundle "spolu/dwm.vim"
 NeoBundle 'endel/vim-github-colorscheme'
 
@@ -85,8 +84,7 @@ let python_highlight_all=1
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-"autocmd BufWritePre *.py :RemoveUnwantedSpaces
-autocmd BufWritePre *.py %:!autopep8 %
+autocmd FileType python nnoremap ttf :<C-u>%!autopep8 %<CR>
 autocmd FileType python nnoremap ttd :<C-u>call PythonTTD()<CR>
 autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
 
@@ -254,3 +252,8 @@ let g:tumblr_group="tech.timlip.com"
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 "}
+
+" vim-airline {
+let g:airline_theme='luna'
+let g:airline_powerline_fonts=1
+" }
