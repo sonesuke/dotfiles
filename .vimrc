@@ -35,7 +35,9 @@ NeoBundle 'endel/vim-github-colorscheme'
 
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'airblade/vim-gitgutter.git'
-NeoBundle 'glidenote/newdayone.vim'
+if has('mac')
+	NeoBundle NeoBundle 'glidenote/newdayone.vim'
+endif
 
 filetype plugin indent on
 
@@ -177,8 +179,10 @@ let g:neocomplcache_skip_auto_completion_time = '0.3'
 let g:neocomplcache_enable_auto_select = 0
 
 " SuperTab like snippets behavior.
-imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+" imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
+" smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " Plugin key-mappings.
 " Ctrl-k expands snippet & moves to next position
