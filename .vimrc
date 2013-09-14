@@ -31,12 +31,19 @@ NeoBundle 'lambdalisue/vim-python-virtualenv'
 
 "NeoBundle "sonesuke/tumblr-vim"
 NeoBundle "spolu/dwm.vim"
-NeoBundle 'endel/vim-github-colorscheme'
+
 
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'airblade/vim-gitgutter.git'
 if has('mac')
 	NeoBundle NeoBundle 'glidenote/newdayone.vim'
+endif
+
+if !has('gui_running')
+	NeoBundle "w0ng/vim-hybrid"
+	set t_Co=256
+	let g:hybrid_use_Xresources = 1
+	colorscheme hybrid
 endif
 
 filetype plugin indent on

@@ -12,15 +12,19 @@ bindkey -v
 
 # pure
 PURE_DEFAULT_USERNAME='sonesuke'
-source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sindresorhus-SLASH-pure.git/pure.zsh
+autoload -U promptinit && promptinit
+prompt pure
+# source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sindresorhus-SLASH-pure.git/pure.zsh
 
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
 
 # pythonz
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-[ -s $HOME/.pythonz/etc/bashrc ] && source $HOME/.pythonz/etc/bashrc
-. py33/bin/activate
+if [ -d $HOME/py33/bin/activate ]; then
+	export VIRTUAL_ENV_DISABLE_PROMPT=1
+	[ -s $HOME/.pythonz/etc/bashrc ] && source $HOME/.pythonz/etc/bashrc
+	. py33/bin/activate
+fi
 
 # cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
@@ -28,6 +32,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 5000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # zaw move recent dirs
 source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git/zaw.zsh
@@ -57,3 +62,5 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
+# terminal 256 color
+#export TERM=xterm-256color
