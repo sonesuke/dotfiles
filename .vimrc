@@ -40,6 +40,7 @@ if has('mac')
 endif
 
 if !has('gui_running')
+	syntax on
 	NeoBundle "w0ng/vim-hybrid"
 	set t_Co=256
 	let g:hybrid_use_Xresources = 1
