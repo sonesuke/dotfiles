@@ -14,10 +14,10 @@ bindkey -v
 PURE_DEFAULT_USERNAME='sonesuke'
 autoload -U promptinit && promptinit
 prompt pure
-# source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sindresorhus-SLASH-pure.git/pure.zsh
 
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
+alias vim="/usr/local/bin/vim"
 
 # pythonz
 if [ -d $HOME/py33/bin/activate ]; then

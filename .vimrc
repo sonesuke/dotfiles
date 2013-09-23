@@ -29,7 +29,7 @@ NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 
-"NeoBundle "sonesuke/tumblr-vim"
+NeoBundle "sonesuke/tumblr-vim"
 NeoBundle "spolu/dwm.vim"
 
 
