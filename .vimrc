@@ -96,6 +96,7 @@ set lazyredraw " コマンド実行中は再描画しない
 set ttyfast " 高速ターミナル接続を行う
 set infercase
 set shortmess+=I
+set virtualedit+=block
 
 " avoid miss type of C-@
 imap <C-@> <C-[>
