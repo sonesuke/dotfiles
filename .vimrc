@@ -58,7 +58,7 @@ NeoBundle "spolu/dwm.vim"
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'airblade/vim-gitgutter.git'
 if has('mac')
-	NeoBundle NeoBundle 'glidenote/newdayone.vim'
+	NeoBundle 'glidenote/newdayone.vim'
 endif
 
 if !has('gui_running')
@@ -152,7 +152,9 @@ nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]g  :<C-u>Unite grep:%:-iRn<CR>
+nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> [unite]r  :<C-u>UniteResume search-buffer<CR>
 nnoremap <silent> [unite]h  :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord line<CR>
@@ -164,15 +166,12 @@ let g:unite_source_history_yank_enable = 1
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_source_grep_max_candidates = 200
-
-" unite-grepのキーマップ
-" 選択した文字列をunite-grep
-" https://github.com/shingokatsushima/dotfiles/blob/master/.vimrc
-vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
 "}
 
