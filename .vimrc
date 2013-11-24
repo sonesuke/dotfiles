@@ -128,6 +128,10 @@ function! PythonTTD()
 	!py.test --pep8 .
 endfunction!
 
+" iec61131-3
+autocmd BufNewFile,BufRead *.iec setf iec
+autocmd FileType iec setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
 " ruby setting
 autocmd FileType ruby setl autoindent
 autocmd FileType ruby setl tabstop=8 expandtab shiftwidth=4 softtabstop=4

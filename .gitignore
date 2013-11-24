@@ -1,3 +1,4 @@
 .tmux.d/*
 .zsh/*
-.vim/*
+.vim/bundle/*
+.vim/.netrwhist
