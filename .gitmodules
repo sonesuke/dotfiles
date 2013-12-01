@@ -4,3 +4,9 @@
 [submodule ".zsh/antigen"]
 	path = .zsh/antigen
 	url = git://github.com/zsh-users/antigen.git
+[submodule ".vim/neobundle"]
+	path = .vim/neobundle
+	url = git://github.com/Shougo/neobundle.vim.git
+[submodule ".vim/bundle/neobundle"]
+	path = .vim/bundle/neobundle
+	url = git://github.com/Shougo/neobundle.vim.git
