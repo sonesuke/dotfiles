@@ -63,4 +63,4 @@ bindkey "^N" history-beginning-search-forward-end
 
 # terminal 256 color
 export TERM=xterm-256color
-source .antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sona-tar-SLASH-terminal-color-theme.git/color-theme-ambiance/ambiance.sh
+source .zsh/terminal-color-theme/color-theme-ambiance/ambiance.sh
