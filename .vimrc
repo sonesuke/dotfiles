@@ -35,7 +35,9 @@ NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 
-NeoBundle "sonesuke/tumblr-vim"
+if has('mac')
+	NeoBundle "sonesuke/tumblr-vim"
+endif
 NeoBundle "spolu/dwm.vim"
 
 " NeoBundleLazy "davidhalter/jedi-vim", {
@@ -61,12 +63,12 @@ if has('mac')
 	NeoBundle 'glidenote/newdayone.vim'
 endif
 
+syntax on
+NeoBundle "w0ng/vim-hybrid"
+colorscheme hybrid
 if !has('gui_running')
-	syntax on
-	NeoBundle "w0ng/vim-hybrid"
 	set t_Co=256
 	let g:hybrid_use_Xresources = 1
-	colorscheme hybrid
 endif
 NeoBundleCheck
 

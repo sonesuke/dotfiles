@@ -17,7 +17,6 @@ prompt pure
 
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
-alias vim="/usr/local/bin/vim"
 
 # pythonz
 if [ -d $HOME/py33/bin/activate ]; then
@@ -63,4 +62,5 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
 # terminal 256 color
-#export TERM=xterm-256color
+export TERM=xterm-256color
+source .antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sona-tar-SLASH-terminal-color-theme.git/color-theme-ambiance/ambiance.sh

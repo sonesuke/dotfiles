@@ -1,0 +1,6 @@
+[submodule ".zsh/terminal-color-theme"]
+	path = .zsh/terminal-color-theme
+	url = git://github.com/sona-tar/terminal-color-theme.git
+[submodule ".zsh/antigen"]
+	path = .zsh/antigen
+	url = git://github.com/zsh-users/antigen.git
