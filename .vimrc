@@ -34,6 +34,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'lambdalisue/vim-python-virtualenv'
+NeoBundle 'bruno-/vim-vertical-move'
+NeoBundle 'osyo-manga/vim-over'
 
 if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
