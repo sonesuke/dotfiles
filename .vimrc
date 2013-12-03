@@ -83,6 +83,8 @@ set ttyfast " 高速ターミナル接続を行う
 set infercase
 set shortmess+=I
 set virtualedit+=block
+set ignorecase
+set wildignorecase
 
 " avoid miss type of C-@
 imap <C-@> <C-[>
@@ -281,4 +283,8 @@ let g:gist_post_private = 1
 " vim-airline {
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
+" }
+
+" Align {
+let g:Align_xstrlen=3
 " }
