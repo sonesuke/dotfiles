@@ -19,6 +19,8 @@ setlocal indentkeys+==for,=end_for
 setlocal indentkeys+==while,=end_while
 setlocal indentkeys+==repeat,=end_repeat
 setlocal indentkeys+==configuration,=end_configuration
+setlocal indentkeys+==resource,=end_resource
+setlocal indentkeys+==task,=end_task
 setlocal indentkeys+==program,=end_program
 setlocal indentkeys+==function_block,=end_function_block
 setlocal indentkeys+==function,=end_function
@@ -29,6 +31,7 @@ setlocal indentkeys+==var_in_out,=end_var
 setlocal indentkeys+==var_external,=end_var
 setlocal indentkeys+==var_global,=end_var
 setlocal indentkeys+==var_access,=end_var
+setlocal indentkeys+==var_tmp,=end_var
 setlocal indentkeys+==type,=end_type
 setlocal indentkeys+==struct,=end_struct
 if !exists("iec_2nd_ed")

@@ -13,7 +13,7 @@ syn case ignore
 syn sync lines=250
 
 syn keyword iecBoolean		true false
-syn keyword iecOperator		and div mod not or xor
+syn keyword iecOperator		and div mod not or xor with
 syn keyword iecConditional	if else then elsif end_if
 syn keyword iecLabel		case of else end_case
 syn keyword iecRepeat		for to by do end_for 
@@ -21,6 +21,8 @@ syn keyword iecRepeat		while do end_while
 syn keyword iecRepeat		repeat until end_repeat
 syn keyword iecFunction		continue exit
 syn keyword iecStatement	configuration end_configuration
+syn keyword iecStatement	resource end_resouce
+syn keyword iecStatement	task end_task
 syn keyword iecStatement	program end_program
 syn keyword iecStatement	function_block end_function_block
 syn keyword iecStatement	function end_function
@@ -28,6 +30,7 @@ syn keyword iecStatement	var end_var
 syn keyword iecStatement	var_input end_var
 syn keyword iecStatement	var_output end_var
 syn keyword iecStatement	var_in_out end_var
+syn keyword iecStatement	var_tmp end_var
 syn keyword iecStatement	var_external end_var
 syn keyword iecStatement	var_global end_var
 syn keyword iecStatement	var_access end_var

@@ -16,3 +16,4 @@ ln -s dotfiles/.zsh .zsh
 ln -s dotfiles/.Xresources-hybrid .Xresources-hybrid
 ln -s dotfiles/.tmux.conf .tmux.conf
 ln -s dotfiles/.tmux .tmux
+ln -s ~/dotfiles/theme-color/vim/colors ~/dotfiles/.vim/colors

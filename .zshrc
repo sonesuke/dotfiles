@@ -17,6 +17,7 @@ prompt pure
 
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
+alias tmux="tmux -u"
 
 # pythonz
 if [ -d $HOME/py33/bin/activate ]; then
@@ -49,7 +50,6 @@ if [ $ != 0 ]; then
 else
       w3m "http://www.alc.co.jp/"
 fi
-}
 
 # move directory without cd
 setopt auto_cd
@@ -63,4 +63,3 @@ bindkey "^N" history-beginning-search-forward-end
 
 # terminal 256 color
 export TERM=xterm-256color
-source .zsh/terminal-color-theme/color-theme-ambiance/ambiance.sh
