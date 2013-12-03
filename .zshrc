@@ -50,6 +50,7 @@ if [ $ != 0 ]; then
 else
       w3m "http://www.alc.co.jp/"
 fi
+}
 
 # move directory without cd
 setopt auto_cd
