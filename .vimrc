@@ -32,7 +32,7 @@ NeoBundle 'mattn/gist-vim'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
-
+NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
@@ -49,7 +49,7 @@ if has('mac')
 endif
 
 syntax on
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow-Night
 if !has('gui_running')
 	set t_Co=256
 	let g:hybrid_use_Xresources = 1
@@ -139,6 +139,7 @@ nmap     , [unite]
 nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]t  :<C-u>Unite tag<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
@@ -282,7 +283,7 @@ let g:gist_post_private = 1
 
 " vim-airline {
 let g:airline_theme='luna'
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 " }
 
 " Align {

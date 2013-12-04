@@ -6,6 +6,7 @@ sudo apt-get install vim
 sudo apt-get install git
 sudo apt-get install tmux
 sudo apt-get install w3m
+sudo apt-get install ctags
 
 ./setup.sh
 cd ~
@@ -31,3 +32,7 @@ sudo make install
 cd ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-sindresorhus-SLASH-pure.git
 sudo mkdir /usr/local/share/zsh/site-functions/:w
 sudo ln -s "$PWD/pure.zsh" /usr/local/share/zsh/site-functions/pure_prompt_setup
+
+sudo apt-get install ruby
+sudo apt-get install ruby-dev
+sudo gem install slideshow
