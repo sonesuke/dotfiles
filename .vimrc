@@ -239,6 +239,7 @@ inoremap <expr><C-k>  pumvisible() ? "\<C-p>" : "\<C-k>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-[>  pumvisible() ? neocomplcache#close_popup()."\<C-[>" : "\<C-[>"
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
