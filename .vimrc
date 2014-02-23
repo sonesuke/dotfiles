@@ -84,7 +84,6 @@ set infercase
 set shortmess+=I
 set virtualedit+=block
 set ignorecase
-set wildignorecase
 
 " avoid miss type of C-@
 imap <C-@> <C-[>
