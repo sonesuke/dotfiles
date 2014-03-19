@@ -17,6 +17,7 @@ prompt pure
 
 # aliases
 alias gvim="open -a /Applications/MacVim.app"
+alias freecad="/Applications/FreeCAD.app/Contents/bin/FreeCADCmd"
 alias tmux="tmux -u"
 
 # pythonz
