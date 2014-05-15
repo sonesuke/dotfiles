@@ -16,6 +16,7 @@ NeoBundle "Shougo/vimproc", {
         \ }}
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'surround.vim'
 NeoBundle 'tpope/vim-markdown'
 if has('mac')
@@ -30,6 +31,7 @@ NeoBundle 'DrawIt'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-tag'
