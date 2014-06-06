@@ -3,6 +3,7 @@ source $HOME/.zsh/antigen/antigen.zsh
 antigen-bundle sindresorhus/pure.git
 antigen-bundle zsh-users/zaw.git
 antigen-bundle zsh-users/zsh-completions.git
+antigen-bundle Tarrasch/zsh-bd
 
 # Tell antigen that you're done.
 antigen-apply
