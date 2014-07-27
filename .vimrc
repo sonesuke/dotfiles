@@ -30,6 +30,10 @@ NeoBundle 'Align'
 NeoBundle 'DrawIt'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'kana/vim-operator-replace.git'
+NeoBundle 'kana/vim-operator-user.git'
+
+NeoBundle 'koron/codic-vim.git'
 
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
@@ -38,6 +42,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
+NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
@@ -290,4 +295,42 @@ let g:airline_theme='luna'
 
 " Align {
 let g:Align_xstrlen=3
+"}
+
+" vim-operator-replace {
+map R <Plug>(operator-replace)
+" }
+
+" codic_complete {
+" https://gist.github.com/sgur/4e1cc8e93798b8fe9621
+inoremap <silent> <C-x><C-t> <C-R>=<SID>codic_complete()<CR>
+function! s:codic_complete()
+	let line = getline('.')
+	let start = match(line, '\k\+$')
+	let cand = s:codic_candidates(line[start :])
+	call complete(start +1, cand)
+	return ''
+endfunction
+function! s:codic_candidates(arglead)
+	let cand = codic#search(a:arglead, 30)
+	"error
+	if type(cand) == type(0)
+		return []
+	endif
+	" english -> english terms
+	if a:arglead =~# '^\w\+$'
+		return map(cand, '{"word": v:val["label"], "menu": join(map(copy(v:val["values"]), "v:val.word"), ",")}')
+	endif
+	" japanese -> english terms
+	return s:reverse_candidates(cand)
+endfunction
+function! s:reverse_candidates(cand)
+	let _ = []
+	for c in a:cand
+		for v in c.values
+			call add(_, {"word": v.word, "menu": !empty(v.desc) ? v.desc : c.label })
+		endfor
+	endfor
+	return _
+endfunction
 " }
