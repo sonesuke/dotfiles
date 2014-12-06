@@ -34,6 +34,9 @@ NeoBundle 'kana/vim-operator-replace.git'
 NeoBundle 'kana/vim-operator-user.git'
 
 NeoBundle 'koron/codic-vim.git'
+NeoBundle 'vim-pandoc/vim-pandoc'
+NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+NeoBundle 'vim-pandoc/vim-rmarkdown'
 
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
@@ -42,7 +45,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'lambdalisue/vim-python-virtualenv'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'yonchu/accelerated-smooth-scroll'
+NeoBundle 'kannokanno/unite-dwm'
 
 if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
@@ -112,14 +115,40 @@ let python_highlight_all=1
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType python nnoremap ttf :<C-u>%!autopep8 %<CR>
 autocmd FileType python nnoremap ttd :<C-u>call PythonTTD()<CR>
-autocmd FileType python nnoremap ttc :<C-u>!py.test --cov-report term-missing --cov .<CR>
+" original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
+function! Preserve(command)
+    " Save the last search.
+    let search = @/
+    " Save the current cursor position.
+    let cursor_position = getpos('.')
+    " Save the current window position.
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    " Execute the command.
+    execute a:command
+    " Restore the last search.
+    let @/ = search
+    " Restore the previous window position.
+    call setpos('.', window_position)
+    normal! zt
+    " Restore the previous cursor position.
+    call setpos('.', cursor_position)
+endfunction
+
+function! Autopep8()
+    call Preserve(':silent %!autopep8 -')
+endfunction
+
+autocmd FileType python nnoremap ttf :call Autopep8()<CR>
+
 
 function! PythonTTD()
 	write
 	sleep 300ms
-	!py.test --pep8 .
+	silent !clear
+	!nosetests .
 endfunction!
 
 " iec61131-3
@@ -155,6 +184,7 @@ nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord line<CR>
 nnoremap <silent> [unite]l  :<C-u>Unite line<CR>
 nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
+nnoremap <silent> [unite]d  :<C-u>Unite dwm<CR>
 
 let g:unite_source_file_mru_limit = 200
 let g:unite_source_history_yank_enable = 1
