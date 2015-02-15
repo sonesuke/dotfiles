@@ -9,10 +9,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle "Shougo/vimproc", {
-        \ "build": {
-        \   "windows"   : "make -f make_mingw32.mak",
-        \   "mac"       : "make -f make_mac.mak",
-        \   "unix"      : "make -f make_unix.mak",
+        \ "build"     : {
+        \   "windows" : "make -f make_mingw32.mak",
+        \ 'cygwin'    : 'make -f make_cygwin.mak',
+        \   "mac"     : "make -f make_mac.mak",
+        \   "unix"    : "make -f make_unix.mak",
         \ }}
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -34,9 +35,9 @@ NeoBundle 'kana/vim-operator-replace.git'
 NeoBundle 'kana/vim-operator-user.git'
 
 NeoBundle 'koron/codic-vim.git'
-NeoBundle 'vim-pandoc/vim-pandoc'
-NeoBundle 'vim-pandoc/vim-pandoc-syntax'
-NeoBundle 'vim-pandoc/vim-rmarkdown'
+" NeoBundle 'vim-pandoc/vim-pandoc'
+" NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+" NeoBundle 'vim-pandoc/vim-rmarkdown'
 
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
@@ -46,6 +47,12 @@ NeoBundle 'lambdalisue/vim-python-virtualenv'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'kannokanno/unite-dwm'
+
+" 遅滞
+NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
+    \ 'autoload': {
+    \    'unite_sources': ['grep/git', 'grep/hg'],
+    \}}
 
 if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
@@ -185,6 +192,7 @@ nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord line<CR>
 nnoremap <silent> [unite]l  :<C-u>Unite line<CR>
 nnoremap <silent> [unite]y  :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]d  :<C-u>Unite dwm<CR>
+nnoremap <silent> [unite]gg  :<C-u>Unite grep/git:.<CR>
 
 let g:unite_source_file_mru_limit = 200
 let g:unite_source_history_yank_enable = 1

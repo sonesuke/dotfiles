@@ -36,6 +36,7 @@ zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+
 # zaw move recent dirs
 source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git/zaw.zsh
 bindkey '^j' zaw-cdr
@@ -54,6 +55,7 @@ else
 fi
 }
 
+#
 # move directory without cd
 setopt auto_cd
 
@@ -66,3 +68,8 @@ bindkey "^N" history-beginning-search-forward-end
 
 # terminal 256 color
 export TERM=xterm-256color
+
+
+export LD_LIBRARY_PATH=$(/usr/local/opt/llvm/bin/llvm-config --libdir):$LD_LIBRARY_PATH
+export PYTHONPATH=$PYTHONPATH:/usr/local/opt/llvm/lib/python2.7/site-packages/
+
