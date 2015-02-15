@@ -101,6 +101,7 @@ set infercase
 set shortmess+=I
 set virtualedit+=block
 set ignorecase
+set pastetoggle=
 
 " avoid miss type of C-@
 imap <C-@> <C-[>
