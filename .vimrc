@@ -33,12 +33,8 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'kana/vim-operator-replace.git'
 NeoBundle 'kana/vim-operator-user.git'
-
+NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'koron/codic-vim.git'
-" NeoBundle 'vim-pandoc/vim-pandoc'
-" NeoBundle 'vim-pandoc/vim-pandoc-syntax'
-" NeoBundle 'vim-pandoc/vim-rmarkdown'
-
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -47,8 +43,11 @@ NeoBundle 'lambdalisue/vim-python-virtualenv'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'kannokanno/unite-dwm'
+NeoBundle 'justinmk/vim-dirvish'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'godlygeek/tabular'
 
-" 遅滞
+" delay
 NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
     \ 'autoload': {
     \    'unite_sources': ['grep/git', 'grep/hg'],
@@ -58,7 +57,6 @@ if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
 endif
 NeoBundle "spolu/dwm.vim"
-
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'airblade/vim-gitgutter.git'
 if has('mac')
