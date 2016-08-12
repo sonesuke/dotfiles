@@ -20,6 +20,7 @@ prompt pure
 alias gvim="open -a /Applications/MacVim.app"
 alias freecad="/Applications/FreeCAD.app/Contents/bin/FreeCADCmd"
 alias tmux="tmux -u"
+alias matlab="/Applications/MATLAB_R2015b.app/bin/matlab  -nodisplay -nosplash"
 
 # pythonz
 if [ -d $HOME/py33/bin/activate ]; then
@@ -70,6 +71,10 @@ bindkey "^N" history-beginning-search-forward-end
 export TERM=xterm-256color
 
 
-export LD_LIBRARY_PATH=$(/usr/local/opt/llvm/bin/llvm-config --libdir):$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=$(/usr/local/opt/llvm/bin/llvm-config --libdir):$LD_LIBRARY_PATH
 export PYTHONPATH=$PYTHONPATH:/usr/local/opt/llvm/lib/python2.7/site-packages/
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

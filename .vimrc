@@ -11,7 +11,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle "Shougo/vimproc", {
         \ "build"     : {
         \   "windows" : "make -f make_mingw32.mak",
-        \ 'cygwin'    : 'make -f make_cygwin.mak',
+        \   'cygwin'  : 'make -f make_cygwin.mak',
         \   "mac"     : "make -f make_mac.mak",
         \   "unix"    : "make -f make_unix.mak",
         \ }}
@@ -23,15 +23,14 @@ NeoBundle 'tpope/vim-markdown'
 if has('mac')
 	NeoBundle 'itspriddle/vim-marked'
 endif
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'airblade/vim-gitgutter.git'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'tComment'
-NeoBundle 'Align'
 NeoBundle 'DrawIt'
+NeoBundle "spolu/dwm.vim"
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
-NeoBundle 'kana/vim-operator-replace.git'
 NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'koron/codic-vim.git'
@@ -39,13 +38,19 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'lambdalisue/vim-python-virtualenv'
-NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'kannokanno/unite-dwm'
-NeoBundle 'justinmk/vim-dirvish'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'godlygeek/tabular'
+NeoBundle 'scrooloose/syntastic.git'
+NeoBundleLazy 'leafgarland/typescript-vim', {
+			\ 'autoload' : {
+			\   'filetypes' : ['typescript']}
+			\}
+NeoBundleLazy 'jason0x43/vim-js-indent', {
+			\ 'autoload' : {
+			\   'filetypes' : ['javascript', 'typescript', 'html'],
+			\}}
+let g:js_indent_typescript = 1
 
 " delay
 NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
@@ -56,18 +61,16 @@ NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
 if has('mac')
 	NeoBundle "sonesuke/tumblr-vim"
 endif
-NeoBundle "spolu/dwm.vim"
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'airblade/vim-gitgutter.git'
+NeoBundle 'atelierbram/Base2Tone-vim'
 if has('mac')
 	NeoBundle 'glidenote/newdayone.vim'
 endif
 
 syntax on
-colorscheme Tomorrow-Night
+set background=dark
+colorscheme base2Tone-Forest-dark
 if !has('gui_running')
 	set t_Co=256
-	let g:hybrid_use_Xresources = 1
 endif
 NeoBundleCheck
 
@@ -165,6 +168,10 @@ autocmd FileType iec setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby setl autoindent
 autocmd FileType ruby setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby nnoremap ttd :<C-u>!rspec .<CR>
+
+" typescript setting
+autocmd FileType typescript setl autoindent
+autocmd FileType typescript setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " markdown setting
 autocmd FileType markdown setl autoindent
@@ -371,3 +378,6 @@ function! s:reverse_candidates(cand)
 	return _
 endfunction
 " }
+"
+"
+set rtp+=~/.fzf
