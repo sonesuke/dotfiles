@@ -16,3 +16,9 @@
 [submodule ".tmux/tmux-powerline"]
 	path = .tmux/tmux-powerline
 	url = git://github.com/erikw/tmux-powerline.git
+[submodule "vim-colors"]
+	path = colors-vim
+	url = https://github.com/atelierbram/Base2Tone-vim.git
+[submodule "iterm2-colors"]
+	path = colors-iterm2
+	url = https://github.com/atelierbram/Base2Tone-iterm2.git
